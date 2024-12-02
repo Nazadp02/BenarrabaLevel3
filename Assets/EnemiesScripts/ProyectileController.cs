@@ -53,6 +53,8 @@ public class ProyectileController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
+
+            //TODO Player_TakeDamage
         }
     }
 }

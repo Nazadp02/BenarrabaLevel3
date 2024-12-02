@@ -13,16 +13,15 @@ public class BossAttack : MonoBehaviour
     [SerializeField] private GameObject proyectile;
 
     [Header("Movement Settings")]
-    [SerializeField] private int maxShotsBeforeMove = 4;   // Número máximo de disparos antes de moverse
+    [SerializeField] private int shootToMove = 4;   // Número máximo de disparos antes de moverse
     [SerializeField] private GameObject[] possiblePositions; // Puntos posibles donde el enemigo puede moverse
 
     //private components
     private float nextShootTime = 0f;
     private int shootCount = 0;
     private bool isShootingProyectile;
-    private bool canShoot;
 
-    private NavMeshAgent navMeshAgent;
+    private NavMeshAgent agent;
     private Animator animator;
 
     private Transform playerTransform;
@@ -34,21 +33,21 @@ public class BossAttack : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
 
     private void Update()
     {
-        ChangeAnimations();
-        AttackAnimation();
+        ChangeBasicAnimations();
 
-        // Si es el momento de disparar, lanza el proyectil
-        if (Time.time >= nextShootTime && navMeshAgent.velocity.sqrMagnitude <= 0.1f)
+        // Si es el momento de disparar, llama a la animacion de ataque que tiene un evento que llama a lanzar proyectil
+        if (Time.time >= nextShootTime && agent.velocity.sqrMagnitude <= 0.1f)
         {
-            canShoot = true;
-            ShootProjectile();
+            animator.SetBool("attack", true);
+            isShootingProyectile = true;
+
             nextShootTime = Time.time + attackRate;
         }
     }
@@ -72,14 +71,14 @@ public class BossAttack : MonoBehaviour
             shootCount++;
 
             // Si el enemigo ha disparado 4 proyectiles, cambia de posición
-            if (shootCount >= maxShotsBeforeMove)
+            if (shootCount >= shootToMove)
             {
                 MoveToNewPosition();
-                canShoot = false;
                 shootCount = 0; // Resetear contador
             }
         }
     }
+
 
     #endregion
 
@@ -95,20 +94,29 @@ public class BossAttack : MonoBehaviour
             int randomIndex = Random.Range(0, possiblePositions.Length);
             Vector3 destination = possiblePositions[randomIndex].transform.position;
 
-            navMeshAgent.SetDestination(destination);
+            agent.SetDestination(destination);
         }
+    }
+
+
+    private void GenerateRandomShotsToMove()
+    {
+        // Generar un número aleatorio entre 4 y 8
+        shootToMove = Random.Range(4, 9); // El rango superior en Random.Range es exclusivo
     }
 
     #endregion
 
     #region Animations
 
-    private void ChangeAnimations()
+    private void ChangeBasicAnimations()
     {
         // Verifica si el enemigo está moviéndose
-        if (navMeshAgent.velocity.sqrMagnitude > 0.1f)
+        if (agent.velocity.sqrMagnitude > 0.1f)
         {
             animator.SetBool("IsMoving", true); // Cambiar la animación a "caminar"
+            animator.SetBool("attack", false);
+
         }
         else
         {
@@ -116,20 +124,6 @@ public class BossAttack : MonoBehaviour
             animator.SetBool("IsMoving", false); // Cambiar la animación a "detenido"
         }
 
-    }
-
-    private void AttackAnimation()
-    {
-        //attack animation
-        if (canShoot == true)
-        {
-            animator.SetBool("attack", true);
-            isShootingProyectile = true;
-        }
-        else
-        {
-            animator.SetBool("attack", false);
-        }
     }
 
     private void LookAtPlayer()
