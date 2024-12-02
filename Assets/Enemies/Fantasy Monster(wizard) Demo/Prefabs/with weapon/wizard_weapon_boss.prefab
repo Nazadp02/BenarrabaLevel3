@@ -17030,6 +17030,7 @@ GameObject:
   - component: {fileID: 4000011578242470}
   - component: {fileID: 95000012058624550}
   - component: {fileID: 7395599236271122611}
+  - component: {fileID: 8219738128242119146}
   m_Layer: 0
   m_Name: wizard_weapon_boss
   m_TagString: Untagged
@@ -17092,11 +17093,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd79979b21dbc8448034da65c8578cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 1
+  attackRate: 2
   proyectileShootPoint: {fileID: 1370447468820159175}
   proyectile: {fileID: 1798175734688377245, guid: 434ee5fa4f9dff84486eaf50180f7dcb,
     type: 3}
-  proyectileSpeed: 10
+  maxShotsBeforeMove: 4
+  possiblePositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!195 &8219738128242119146
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013586557078}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1000013699516860
 GameObject:
   m_ObjectHideFlags: 0
