@@ -35,6 +35,8 @@ public class ProyectileController : MonoBehaviour
 
     #endregion
 
+    #region Movement
+
     private void ProyectileMovement()
     {
         // Calcula la dirección hacia el jugador
@@ -48,6 +50,10 @@ public class ProyectileController : MonoBehaviour
         rb.velocity = transform.forward * proyectileSpeed;
     }
 
+    #endregion
+
+    #region DamageCollision
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -57,4 +63,6 @@ public class ProyectileController : MonoBehaviour
             //TODO Player_TakeDamage
         }
     }
+
+    #endregion
 }

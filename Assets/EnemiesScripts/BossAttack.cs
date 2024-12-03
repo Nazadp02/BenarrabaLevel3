@@ -13,13 +13,13 @@ public class BossAttack : MonoBehaviour
     [SerializeField] private GameObject proyectile;
 
     [Header("Movement Settings")]
-    [SerializeField] private int shootToMove = 4;   // Número máximo de disparos antes de moverse
     [SerializeField] private GameObject[] possiblePositions; // Puntos posibles donde el enemigo puede moverse
 
     //private components
     private float nextShootTime = 0f;
     private int shootCount = 0;
     private bool isShootingProyectile;
+    private int shootToMove;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -34,7 +34,11 @@ public class BossAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        // Asignar un valor aleatorio entre 4 y 9
+        shootToMove = Random.Range(4, 10);
     }
 
 
@@ -49,6 +53,11 @@ public class BossAttack : MonoBehaviour
             isShootingProyectile = true;
 
             nextShootTime = Time.time + attackRate;
+        }
+
+        if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        {
+            OnMovementComplete();  // Llamar a la función cuando el boss llegue al destino
         }
     }
 
@@ -74,7 +83,8 @@ public class BossAttack : MonoBehaviour
             if (shootCount >= shootToMove)
             {
                 MoveToNewPosition();
-                shootCount = 0; // Resetear contador
+                shootCount = 0; // Resetear contador        
+                shootToMove = Random.Range(4, 10); // Asignar un nuevo valor aleatorio de disparos para la siguiente ronda
             }
         }
     }
@@ -87,6 +97,9 @@ public class BossAttack : MonoBehaviour
     private void MoveToNewPosition()
     {
         isShootingProyectile = false;
+        GetComponent<BossHealth>().IsInvulnerable = true;   //cuando se mueva no podrá recibir daño
+
+        GetComponent<BossHealth>().StartBlink();
 
         // Elige un nuevo punto al azar de los posibles
         if (possiblePositions.Length > 0)
@@ -98,11 +111,22 @@ public class BossAttack : MonoBehaviour
         }
     }
 
-
-    private void GenerateRandomShotsToMove()
+    private void LookAtPlayer()
     {
-        // Generar un número aleatorio entre 4 y 8
-        shootToMove = Random.Range(4, 9); // El rango superior en Random.Range es exclusivo
+        GetComponent<BossHealth>().IsInvulnerable = true;
+
+        // Rotar al enemigo para que mire al jugador
+        Vector3 direction = (playerTransform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);  // Rotación suave
+
+    }
+
+    public void OnMovementComplete()
+    {
+        // Esta función se llamará cuando el boss haya llegado a su nuevo destino
+        GetComponent<BossHealth>().IsInvulnerable = false; // El boss deja de ser invulnerable
+        GetComponent<BossHealth>().StopBlink();
     }
 
     #endregion
@@ -124,14 +148,6 @@ public class BossAttack : MonoBehaviour
             animator.SetBool("IsMoving", false); // Cambiar la animación a "detenido"
         }
 
-    }
-
-    private void LookAtPlayer()
-    {
-        // Rotar al enemigo para que mire al jugador
-        Vector3 direction = (playerTransform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);  // Rotación suave
     }
 
     #endregion
