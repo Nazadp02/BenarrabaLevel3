@@ -19,8 +19,8 @@ public class PlayerShooting : MonoBehaviour
     private void Update()
     {
         // Detectar si se presiona el botón de disparo del controlador derecho
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
-        {
+       // if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        //{
 
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             {
@@ -32,11 +32,11 @@ public class PlayerShooting : MonoBehaviour
 
             }
             
-        }
+       // }
 
         // Detectar si se presiona el botón de disparo del controlador izquierdo
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
-        {
+       // if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+       // {
 
             if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
@@ -48,7 +48,7 @@ public class PlayerShooting : MonoBehaviour
 
             }
 
-        }
+      //  }
     }
 
     private void Shooting(GameObject gun, Transform shootPoint)
