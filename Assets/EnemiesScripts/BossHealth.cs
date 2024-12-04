@@ -16,7 +16,6 @@ public class BossHealth : MonoBehaviour
     //private components
     private int currentHealth;
     private bool isInvulnerable = false;
-    private bool canTakeDamage = false;
     private Animator anim;
 
     public bool IsInvulnerable { get => isInvulnerable; set => isInvulnerable = value; }
@@ -70,8 +69,6 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator Blink(int blinkTimes)
     {
-        canTakeDamage = false;
-
         for (int i = 0; i < blinkTimes; i++)
         {
             bossMesh.SetActive(false);
@@ -92,8 +89,6 @@ public class BossHealth : MonoBehaviour
 
             yield return new WaitForSeconds(blinkRate);
         }
-
-        canTakeDamage = true;
     }
 
     #endregion
