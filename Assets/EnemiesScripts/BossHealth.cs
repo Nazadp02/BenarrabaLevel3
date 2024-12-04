@@ -11,6 +11,7 @@ public class BossHealth : MonoBehaviour
     [Header("Blink")]
     [SerializeField] private float blinkRate = 0.3f;
     [SerializeField] private GameObject bossMesh;
+    [SerializeField] private GameObject[] WeakPoints;
 
     //private components
     private int currentHealth;
@@ -73,12 +74,22 @@ public class BossHealth : MonoBehaviour
 
         for (int i = 0; i < blinkTimes; i++)
         {
-            // Cambiar la emisión al color deseado (blanco en este caso)
             bossMesh.SetActive(false);
+
+            for (int j = 0; j < WeakPoints.Length; j++)
+            {
+                WeakPoints[j].SetActive(false);
+            }
+
             yield return new WaitForSeconds(blinkRate);
 
-            // Volver a color de emisión normal (sin emisión)
             bossMesh.SetActive(true);
+
+            for (int j = 0; j < WeakPoints.Length; j++)
+            {
+                WeakPoints[j].SetActive(true);
+            }
+
             yield return new WaitForSeconds(blinkRate);
         }
 
