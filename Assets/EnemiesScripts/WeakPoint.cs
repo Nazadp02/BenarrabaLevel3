@@ -1,28 +1,47 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeakPoint : MonoBehaviour
 {
-    public int damage = 10; // Daño que se inflige al jefe
-    public ParticleSystem hitEffect; // Sistema de partículas que se activará
-    public BossHealth BossHealth;
+    [Header("Weak Points settings")]
+    [SerializeField] private int maxHits = 3;
+    [SerializeField] private Image imageWeakPoint;
+    [SerializeField] private GameObject weakPoint;
 
-    private void Start()
+    private int currentHits = 0;
+
+    private void Update()
     {
-        
+        DesactiveWeakPoint();    
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void RegisterHit()
     {
-        // Verifica si el objeto que entra es una bala
-        if (other.CompareTag("Bullet"))
+        currentHits++;
+        
+
+        if (currentHits >= maxHits)
         {
-            // Instancia el efecto de partículas
-            if (hitEffect != null)
-            {
-                Instantiate(hitEffect, transform.position, Quaternion.identity);
-            }
-            
-            
+            DestroyWeakPoint();
         }
+    }
+
+    private void DestroyWeakPoint()
+    {
+        imageWeakPoint.enabled = false;
+        weakPoint.SetActive(false);
+
+        GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().ActiveDamageAnimation();
+
+    }
+
+    private void DesactiveWeakPoint()
+    {
+        if (GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossAttack>().IsMoving == true)
+        {
+            imageWeakPoint.enabled = false;
+            weakPoint.SetActive(false);
+        }
+    
     }
 }

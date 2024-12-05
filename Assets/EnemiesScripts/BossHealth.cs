@@ -8,17 +8,19 @@ public class BossHealth : MonoBehaviour
     [Header("Health Settings")]
     [SerializeField] private int maxHealth = 100;
 
-    [Header("Blink")]
+    [Header("Blink settings")]
     [SerializeField] private float blinkRate = 0.3f;
     [SerializeField] private GameObject bossMesh;
-    [SerializeField] private GameObject[] WeakPoints;
 
     //private components
     private int currentHealth;
     private bool isInvulnerable = false;
+    private bool canTakeDamage = true;
     private Animator anim;
 
+    //shared components
     public bool IsInvulnerable { get => isInvulnerable; set => isInvulnerable = value; }
+    public bool CanTakeDamage { get => canTakeDamage; set => canTakeDamage = value; }
 
     #endregion
 
@@ -39,7 +41,6 @@ public class BossHealth : MonoBehaviour
         if (!IsInvulnerable) // Solo recibe daño si no está invulnerable
         {
             currentHealth -= damage;
-            anim.SetBool("dead", true);
 
             if (currentHealth <= 0)
             {
@@ -48,9 +49,19 @@ public class BossHealth : MonoBehaviour
         }
     }
 
+    public void ActiveDamageAnimation()
+    {
+        if (canTakeDamage == true)
+        {
+            anim.SetTrigger("damage");
+        }
+    }
+
     private void Die()
     {
-        //TODO die System
+        anim.SetTrigger("dead");
+        CanTakeDamage = false;
+        Debug.Log("El boss ha muerto");
     }
 
     #endregion
@@ -73,19 +84,9 @@ public class BossHealth : MonoBehaviour
         {
             bossMesh.SetActive(false);
 
-            for (int j = 0; j < WeakPoints.Length; j++)
-            {
-                WeakPoints[j].SetActive(false);
-            }
-
             yield return new WaitForSeconds(blinkRate);
 
             bossMesh.SetActive(true);
-
-            for (int j = 0; j < WeakPoints.Length; j++)
-            {
-                WeakPoints[j].SetActive(true);
-            }
 
             yield return new WaitForSeconds(blinkRate);
         }

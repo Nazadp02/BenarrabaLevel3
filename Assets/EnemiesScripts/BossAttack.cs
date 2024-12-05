@@ -19,12 +19,15 @@ public class BossAttack : MonoBehaviour
     private float nextShootTime = 0f;
     private int shootCount = 0;
     private bool isShootingProyectile;
+    private bool isMoving;
     private int shootToMove;
 
     private NavMeshAgent agent;
     private Animator animator;
 
     private Transform playerTransform;
+
+    public bool IsMoving { get => isMoving; set => isMoving = value; }
 
     #endregion
 
@@ -97,6 +100,8 @@ public class BossAttack : MonoBehaviour
     private void MoveToNewPosition()
     {
         isShootingProyectile = false;
+        isMoving = true;
+
         GetComponent<BossHealth>().IsInvulnerable = true;   //cuando se mueva no podrá recibir daño
 
         GetComponent<BossHealth>().StartBlink();
@@ -114,6 +119,7 @@ public class BossAttack : MonoBehaviour
     private void LookAtPlayer()
     {
         GetComponent<BossHealth>().IsInvulnerable = true;
+        isMoving = true;
 
         // Rotar al enemigo para que mire al jugador
         Vector3 direction = (playerTransform.position - transform.position).normalized;
@@ -126,6 +132,7 @@ public class BossAttack : MonoBehaviour
     {
         // Esta función se llamará cuando el boss haya llegado a su nuevo destino
         GetComponent<BossHealth>().IsInvulnerable = false; // El boss deja de ser invulnerable
+        isMoving = false;
         GetComponent<BossHealth>().StopBlink();
     }
 

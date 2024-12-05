@@ -6,8 +6,8 @@ TagManager:
   tags:
   - Props
   - Building
-  - Bullet
   - Enemy
+  - WeakPoint
   layers:
   - Default
   - TransparentFX
