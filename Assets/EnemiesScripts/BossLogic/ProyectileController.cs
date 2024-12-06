@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ProyectileController : MonoBehaviour
 {
-
     #region Components
 
     [Header("Proyectile Info")]

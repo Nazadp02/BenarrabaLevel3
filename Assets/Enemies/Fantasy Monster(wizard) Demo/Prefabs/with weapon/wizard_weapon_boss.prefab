@@ -17035,6 +17035,7 @@ GameObject:
   - component: {fileID: 8219738128242119146}
   - component: {fileID: 7395599236271122611}
   - component: {fileID: 3863074889564199102}
+  - component: {fileID: 5493726840410426518}
   m_Layer: 0
   m_Name: wizard_weapon_boss
   m_TagString: Enemy
@@ -17139,9 +17140,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e6423eeab64b14da25a364b33b7439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 120
   blinkRate: 0.6
   bossMesh: {fileID: 5507913559464896534}
+--- !u!114 &5493726840410426518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013586557078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d78a0ed8a34224d8a85f3ae09d2bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  weakPoints:
+  - {fileID: 4529637287372663604}
+  - {fileID: 5145267633076773296}
+  - {fileID: 6049631975292406328}
+  - {fileID: 6338443342879052108}
+  minionsPrefab: {fileID: 1000012226140144, guid: 11db918338e063f4b86b6024c791e5a8,
+    type: 3}
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemiesToSpawn: 5
 --- !u!1 &1000013699516860
 GameObject:
   m_ObjectHideFlags: 0
@@ -31951,7 +31978,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 671615434220709929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalPosition: {x: 0, y: 0, z: 1.86}
   m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32097,7 +32124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHits: 3
   imageWeakPoint: {fileID: 4335813209159649532}
-  weakPoint: {fileID: 1034791397112072851}
+  weakPoint: {fileID: 387184547806766625}
 --- !u!1 &1077146012858813779
 GameObject:
   m_ObjectHideFlags: 0
@@ -32241,7 +32268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHits: 3
   imageWeakPoint: {fileID: 3925150188146774076}
-  weakPoint: {fileID: 2012317918973517463}
+  weakPoint: {fileID: 7954961143087344958}
 --- !u!1 &2346092450705269786
 GameObject:
   m_ObjectHideFlags: 0
@@ -32385,7 +32412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHits: 3
   imageWeakPoint: {fileID: 4336564277851580537}
-  weakPoint: {fileID: 3070684000083268426}
+  weakPoint: {fileID: 3679988761645223267}
 --- !u!1 &5149796742494291256
 GameObject:
   m_ObjectHideFlags: 0
@@ -32454,7 +32481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHits: 3
   imageWeakPoint: {fileID: 9065436136393948839}
-  weakPoint: {fileID: 5149796742494291256}
+  weakPoint: {fileID: 7054311887516707625}
 --- !u!1 &5507913559464896534
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,15 +14,10 @@ public class DamageTest : MonoBehaviour
 
                 // Obtener el componente de salud del jefe
                 GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().TakeDamage(damage);
-                GameObject.FindGameObjectWithTag("WeakPoint").GetComponent<WeakPoint>().RegisterHit();
 
-                
+                other.GetComponent<WeakPoint>().RegisterHit();
             }
 
-        }
-        else
-        {
-            Debug.Log("Impacto en una parte no vulnerable");
         }
     }
 }

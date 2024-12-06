@@ -3,7 +3,6 @@ using UnityEngine.AI;
 
 public class BossAttack : MonoBehaviour
 {
-
     #region Components
 
     //shoot properties 
@@ -132,8 +131,9 @@ public class BossAttack : MonoBehaviour
     {
         // Esta función se llamará cuando el boss haya llegado a su nuevo destino
         GetComponent<BossHealth>().IsInvulnerable = false; // El boss deja de ser invulnerable
-        isMoving = false;
         GetComponent<BossHealth>().StopBlink();
+
+        isMoving = false;
     }
 
     #endregion
@@ -153,6 +153,7 @@ public class BossAttack : MonoBehaviour
         {
             LookAtPlayer();
             animator.SetBool("IsMoving", false); // Cambiar la animación a "detenido"
+            
         }
 
     }
