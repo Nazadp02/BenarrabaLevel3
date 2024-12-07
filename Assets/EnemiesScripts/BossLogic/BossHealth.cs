@@ -14,7 +14,7 @@ public class BossHealth : MonoBehaviour
 
     //private components
     private int currentHealth;
-    private bool isInvulnerable = false;
+    private bool isInvulnerable;
     private bool canTakeDamage = true;
     private Animator anim;
 
@@ -38,7 +38,7 @@ public class BossHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (!IsInvulnerable) // Solo recibe daño si no está invulnerable
+        if (!isInvulnerable) // Solo recibe daño si no está invulnerable
         {
             currentHealth -= damage;
 

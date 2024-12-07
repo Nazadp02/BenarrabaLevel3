@@ -18,7 +18,8 @@ public class WeakPoint : MonoBehaviour
 
     private void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossAttack>().IsMoving == true)
+        if (GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossAttack>().IsMoving == true || 
+            GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().IsInvulnerable == true)
         {
             DesactiveWeakPoint();
         }
@@ -55,7 +56,7 @@ public class WeakPoint : MonoBehaviour
 
     #region ShowWeakPoint
 
-    private void DesactiveWeakPoint()
+    public void DesactiveWeakPoint()
     {
         if (weakPoint != null)
         {
@@ -64,7 +65,7 @@ public class WeakPoint : MonoBehaviour
         }
     }
 
-    private void ActiveWeakPoint()
+    public void ActiveWeakPoint()
     {
         if (weakPoint != null)
         {

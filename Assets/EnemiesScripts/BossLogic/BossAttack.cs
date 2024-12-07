@@ -19,6 +19,7 @@ public class BossAttack : MonoBehaviour
     private int shootCount = 0;
     private bool isShootingProyectile;
     private bool isMoving;
+    private bool canShoot = true;
     private int shootToMove;
 
     private NavMeshAgent agent;
@@ -27,6 +28,8 @@ public class BossAttack : MonoBehaviour
     private Transform playerTransform;
 
     public bool IsMoving { get => isMoving; set => isMoving = value; }
+    public bool IsShootingProyectile { get => isShootingProyectile; set => isShootingProyectile = value; }
+    public bool CanShoot { get => canShoot; set => canShoot = value; }
 
     #endregion
 
@@ -46,16 +49,16 @@ public class BossAttack : MonoBehaviour
 
     private void Update()
     {
-        ChangeBasicAnimations();
-
         // Si es el momento de disparar, llama a la animacion de ataque que tiene un evento que llama a lanzar proyectil
-        if (Time.time >= nextShootTime && agent.velocity.sqrMagnitude <= 0.1f)
+        if (Time.time >= nextShootTime && agent.velocity.sqrMagnitude <= 0.1f && canShoot) //si está quiero y puede disparar (primera fase)
         {
             animator.SetBool("attack", true);
             isShootingProyectile = true;
 
             nextShootTime = Time.time + attackRate;
         }
+        
+        ChangeAnimations();
 
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
@@ -129,8 +132,8 @@ public class BossAttack : MonoBehaviour
 
     public void OnMovementComplete()
     {
+        /*GetComponent<BossHealth>().IsInvulnerable = false;*/ // El boss deja de ser invulnerable
         // Esta función se llamará cuando el boss haya llegado a su nuevo destino
-        GetComponent<BossHealth>().IsInvulnerable = false; // El boss deja de ser invulnerable
         GetComponent<BossHealth>().StopBlink();
 
         isMoving = false;
@@ -140,22 +143,28 @@ public class BossAttack : MonoBehaviour
 
     #region Animations
 
-    private void ChangeBasicAnimations()
+    private void ChangeAnimations()
     {
-        // Verifica si el enemigo está moviéndose
-        if (agent.velocity.sqrMagnitude > 0.1f)
+        if (agent.velocity.sqrMagnitude <= 0.1f && canShoot == false) //si está quieto y no puede disparar (segunda fase)
+        {
+            agent.isStopped = true;
+            animator.SetBool("idle", true);
+            animator.SetBool("attack", false);
+            animator.SetBool("IsMoving", false);
+            GetComponent<BossHealth>().IsInvulnerable = true;
+        }
+        else if (agent.velocity.sqrMagnitude > 0.1f) //si está moviendose
         {
             animator.SetBool("IsMoving", true); // Cambiar la animación a "caminar"
             animator.SetBool("attack", false);
-
+            animator.SetBool("idle", false);
         }
-        else
+        else if (agent.velocity.sqrMagnitude <= 0.1f) //si está quieto
         {
             LookAtPlayer();
-            animator.SetBool("IsMoving", false); // Cambiar la animación a "detenido"
-            
+            animator.SetBool("IsMoving", false);
+            GetComponent<BossHealth>().IsInvulnerable = false; // El boss deja de ser invulnerable
         }
-
     }
 
     #endregion

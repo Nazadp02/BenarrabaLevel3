@@ -8,6 +8,7 @@ TagManager:
   - Building
   - Enemy
   - WeakPoint
+  - Minion
   layers:
   - Default
   - TransparentFX
