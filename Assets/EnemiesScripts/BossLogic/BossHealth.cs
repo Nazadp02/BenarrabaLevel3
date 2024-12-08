@@ -16,6 +16,7 @@ public class BossHealth : MonoBehaviour
     private int currentHealth;
     private bool isInvulnerable;
     private bool canTakeDamage = true;
+    private bool isDead;
     private Animator anim;
 
     //shared components
@@ -38,6 +39,8 @@ public class BossHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         if (!isInvulnerable) // Solo recibe daño si no está invulnerable
         {
             currentHealth -= damage;
@@ -59,8 +62,9 @@ public class BossHealth : MonoBehaviour
 
     private void Die()
     {
-        anim.SetTrigger("dead");
+        isDead = true;
         CanTakeDamage = false;
+        anim.SetTrigger("dead");
         Debug.Log("El boss ha muerto");
     }
 

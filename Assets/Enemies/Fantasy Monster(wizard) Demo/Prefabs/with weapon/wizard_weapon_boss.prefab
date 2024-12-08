@@ -17033,6 +17033,7 @@ GameObject:
   - component: {fileID: 4000011578242470}
   - component: {fileID: 95000012058624550}
   - component: {fileID: 8219738128242119146}
+  - component: {fileID: 4754767526986077420}
   - component: {fileID: 7395599236271122611}
   - component: {fileID: 3863074889564199102}
   - component: {fileID: 5493726840410426518}
@@ -17106,6 +17107,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &4754767526986077420
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013586557078}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7400001, y: 5.5600004, z: 1.5832736}
+  m_Center: {x: 0, y: 3.7899997, z: -0.083363056}
 --- !u!114 &7395599236271122611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17122,11 +17144,7 @@ MonoBehaviour:
   proyectileShootPoint: {fileID: 1370447468820159175}
   proyectile: {fileID: 1798175734688377245, guid: 434ee5fa4f9dff84486eaf50180f7dcb,
     type: 3}
-  possiblePositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  possiblePositionsContainer: {fileID: 0}
 --- !u!114 &3863074889564199102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17139,7 +17157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e6423eeab64b14da25a364b33b7439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 120
+  maxHealth: 500
   blinkRate: 0.6
   bossMesh: {fileID: 5507913559464896534}
 --- !u!114 &5493726840410426518
@@ -17160,16 +17178,12 @@ MonoBehaviour:
   - {fileID: 5145267633076773296}
   - {fileID: 6049631975292406328}
   - {fileID: 6338443342879052108}
+  totalWeakPoints: 4
   minionsPrefab: {fileID: 1000012226140144, guid: 11db918338e063f4b86b6024c791e5a8,
     type: 3}
-  spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  spawnPointsContainer: {fileID: 0}
   enemiesToSpawn: 5
+  minionSpawnRate: 5
 --- !u!1 &1000013699516860
 GameObject:
   m_ObjectHideFlags: 0

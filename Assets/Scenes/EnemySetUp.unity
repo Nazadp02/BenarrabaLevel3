@@ -682,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 538028225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.65, y: 14.05, z: 5.64}
+  m_LocalPosition: {x: -0.65, y: 12.41, z: 5.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1071,24 +1071,9 @@ PrefabInstance:
       objectReference: {fileID: 443071535}
     - target: {fileID: 7395599236271122611, guid: 3c9c8a8bf50e6b5439ab9db67bc82586,
         type: 3}
-      propertyPath: possiblePositions.Array.data[0]
+      propertyPath: possiblePositionsContainer
       value: 
-      objectReference: {fileID: 177489763}
-    - target: {fileID: 7395599236271122611, guid: 3c9c8a8bf50e6b5439ab9db67bc82586,
-        type: 3}
-      propertyPath: possiblePositions.Array.data[1]
-      value: 
-      objectReference: {fileID: 1068335508}
-    - target: {fileID: 7395599236271122611, guid: 3c9c8a8bf50e6b5439ab9db67bc82586,
-        type: 3}
-      propertyPath: possiblePositions.Array.data[2]
-      value: 
-      objectReference: {fileID: 2115480585}
-    - target: {fileID: 7395599236271122611, guid: 3c9c8a8bf50e6b5439ab9db67bc82586,
-        type: 3}
-      propertyPath: possiblePositions.Array.data[3]
-      value: 
-      objectReference: {fileID: 203572627}
+      objectReference: {fileID: 435246523}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

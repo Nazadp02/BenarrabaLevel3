@@ -19,5 +19,14 @@ public class DamageTest : MonoBehaviour
             }
 
         }
+        else if (other.CompareTag("Enemy"))
+        {
+            // Daño directo al jefe si todos los puntos débiles están destruidos
+            if (GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossPhases>().AreWeakPointDestroyed)
+            {
+                GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().TakeDamage(damage);
+                Debug.Log("Daño directo al jefe!");
+            }
+        }
     }
 }

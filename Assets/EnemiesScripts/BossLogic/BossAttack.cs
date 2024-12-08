@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,15 +13,19 @@ public class BossAttack : MonoBehaviour
     [SerializeField] private GameObject proyectile;
 
     [Header("Movement Settings")]
-    [SerializeField] private GameObject[] possiblePositions; // Puntos posibles donde el enemigo puede moverse
+    [SerializeField] private GameObject possiblePositionsContainer;
+    private List<Transform> possiblePositions = new List<Transform>(); // Puntos posibles donde el enemigo puede moverse
 
     //private components
     private float nextShootTime = 0f;
     private int shootCount = 0;
     private bool isShootingProyectile;
-    private bool isMoving;
     private bool canShoot = true;
     private int shootToMove;
+
+    private bool isMoving;
+    private Transform currentWaypoint; // Punto actual al que se dirige
+    private Transform previousWaypoint; // Punto previo para evitar repetición
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -41,6 +46,8 @@ public class BossAttack : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        foreach (Transform child in possiblePositionsContainer.transform) possiblePositions.Add(child);
 
         // Asignar un valor aleatorio entre 4 y 9
         shootToMove = Random.Range(4, 10);
@@ -63,6 +70,7 @@ public class BossAttack : MonoBehaviour
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
             OnMovementComplete();  // Llamar a la función cuando el boss llegue al destino
+            Debug.Log("Ha llegado al destino ");
         }
     }
 
@@ -84,12 +92,12 @@ public class BossAttack : MonoBehaviour
             //incrementamos el número de disparos
             shootCount++;
 
-            // Si el enemigo ha disparado 4 proyectiles, cambia de posición
+            // Si el enemigo ha disparado los proyectiles correspondientes, cambia de posición
             if (shootCount >= shootToMove)
             {
                 MoveToNewPosition();
                 shootCount = 0; // Resetear contador        
-                shootToMove = Random.Range(4, 10); // Asignar un nuevo valor aleatorio de disparos para la siguiente ronda
+                shootToMove = Random.Range(4, 7); // Asignar un nuevo valor aleatorio de disparos para la siguiente ronda
             }
         }
     }
@@ -108,14 +116,20 @@ public class BossAttack : MonoBehaviour
 
         GetComponent<BossHealth>().StartBlink();
 
-        // Elige un nuevo punto al azar de los posibles
-        if (possiblePositions.Length > 0)
-        {
-            int randomIndex = Random.Range(0, possiblePositions.Length);
-            Vector3 destination = possiblePositions[randomIndex].transform.position;
+        // Excluye el waypoint actual de la lista
+        List<Transform> possibleWaypoints = new List<Transform>(possiblePositions);
+        possibleWaypoints.Remove(currentWaypoint);
 
-            agent.SetDestination(destination);
-        }
+        // Selecciona uno nuevo aleatoriamente
+        Transform nextWaypoint = possibleWaypoints[Random.Range(0, possibleWaypoints.Count)];
+
+        // Actualiza el waypoint anterior y el actual
+        previousWaypoint = currentWaypoint;
+        currentWaypoint = nextWaypoint;
+
+        // Establece el nuevo destino
+        agent.SetDestination(currentWaypoint.position);
+        agent.isStopped = false;
     }
 
     private void LookAtPlayer()
@@ -132,8 +146,6 @@ public class BossAttack : MonoBehaviour
 
     public void OnMovementComplete()
     {
-        /*GetComponent<BossHealth>().IsInvulnerable = false;*/ // El boss deja de ser invulnerable
-        // Esta función se llamará cuando el boss haya llegado a su nuevo destino
         GetComponent<BossHealth>().StopBlink();
 
         isMoving = false;
