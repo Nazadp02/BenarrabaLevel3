@@ -16,7 +16,7 @@ public class BossPhases : MonoBehaviour
     [SerializeField] private GameObject minionsPrefab; // Prefab de los enemigos a spawnear
     [SerializeField] private GameObject spawnPointsContainer;
     [SerializeField] private int enemiesToSpawn = 5; // Número de enemigos a spawnear en la segunda fase
-    [SerializeField] private float minionSpawnRate = 10f; // Tiempo entre spawns de minions
+    [SerializeField] private float minionSpawnRate = 30f; // Tiempo entre spawns de minions
 
     private int destroyedWeakPoints = 0;
     private bool areWeakPointDestroyed;

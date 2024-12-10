@@ -1682,7 +1682,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319539105}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4444ce35d262aa648ad0c425a559b931, type: 3}
   m_Name: 
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   compositionDepth: 0
   noDepthBufferTesting: 1
   layerTextureFormat: 0
-  currentOverlayShape: 0
+  currentOverlayShape: 2
   textures:
   - {fileID: 8900000, guid: 63f5230733402954b814bcafe0740f59, type: 3}
   - {fileID: 0}
@@ -5209,7 +5209,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014883527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4444ce35d262aa648ad0c425a559b931, type: 3}
   m_Name: 

@@ -17054,7 +17054,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4000010094665428}
@@ -17157,8 +17157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e6423eeab64b14da25a364b33b7439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
-  blinkRate: 0.6
+  maxHealth: 220
+  blinkRate: 0.3
   bossMesh: {fileID: 5507913559464896534}
 --- !u!114 &5493726840410426518
 MonoBehaviour:

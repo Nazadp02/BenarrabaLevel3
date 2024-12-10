@@ -1201,12 +1201,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunRight: {fileID: 1167885286}
   shootPointRight: {fileID: 1167885288}
-  gunAnimatorRight: {fileID: 1167885287}
   gunLeft: {fileID: 1708341584}
   shootPointLeft: {fileID: 1708341586}
-  gunAnimatorLeft: {fileID: 1708341585}
   Bullet: {fileID: 5748434301872809631, guid: 74ed42cf7f273de43892cccd3334ada2, type: 3}
-  shootForce: 100
+  shootForce: 1000
 --- !u!114 &752980439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1811,11 +1809,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3057397973769727694, guid: 26dda1e81c1fa184f8ffaeb39ad7bfb8,
+    - target: {fileID: 3948514935812820307, guid: 26dda1e81c1fa184f8ffaeb39ad7bfb8,
         type: 3}
-      propertyPath: _defaultInteractable
-      value: 
-      objectReference: {fileID: 830250533}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5858133888772846848, guid: 26dda1e81c1fa184f8ffaeb39ad7bfb8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6547270053017804577, guid: 26dda1e81c1fa184f8ffaeb39ad7bfb8,
         type: 3}
       propertyPath: m_Name
@@ -1871,21 +1874,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456246188}
     m_Modifications:
-    - target: {fileID: 2152686489805049144, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: _defaultInteractable
-      value: 
-      objectReference: {fileID: 1273752731}
-    - target: {fileID: 5178627812262783591, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178627812262783591, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6147066735968751493, guid: ba3ba2abdc8bf6944ac6a467cd236952,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1942,20 +1930,13 @@ PrefabInstance:
       value: GunRight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6618604586751187351, guid: ba3ba2abdc8bf6944ac6a467cd236952, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3ba2abdc8bf6944ac6a467cd236952, type: 3}
 --- !u!1 &1167885286 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6774843256803546431, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-    type: 3}
-  m_PrefabInstance: {fileID: 1167885285}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1167885287 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2170005241240761127, guid: ba3ba2abdc8bf6944ac6a467cd236952,
     type: 3}
   m_PrefabInstance: {fileID: 1167885285}
   m_PrefabAsset: {fileID: 0}
@@ -3117,26 +3098,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1456246188}
     m_Modifications:
-    - target: {fileID: 251858666356059843, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2152686489805049144, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2218758442484067398, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: _rigidbody
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178627812262783591, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 5588584498384258569, guid: ba3ba2abdc8bf6944ac6a467cd236952,
         type: 3}
       propertyPath: _defaultInteractable
@@ -3198,20 +3159,13 @@ PrefabInstance:
       value: GunLeft
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 6618604586751187351, guid: ba3ba2abdc8bf6944ac6a467cd236952, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba3ba2abdc8bf6944ac6a467cd236952, type: 3}
 --- !u!1 &1708341584 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6774843256803546431, guid: ba3ba2abdc8bf6944ac6a467cd236952,
-    type: 3}
-  m_PrefabInstance: {fileID: 1708341583}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1708341585 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2170005241240761127, guid: ba3ba2abdc8bf6944ac6a467cd236952,
     type: 3}
   m_PrefabInstance: {fileID: 1708341583}
   m_PrefabAsset: {fileID: 0}
@@ -3297,29 +3251,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 978530303}
     m_Modifications:
-    - target: {fileID: 1000010633298584, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_Name
       value: wizard_weapon_boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013586557078, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011578242470, guid: 3c9c8a8bf50e6b5439ab9db67bc82586, type: 3}
       propertyPath: m_LocalPosition.x

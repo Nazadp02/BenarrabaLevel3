@@ -6,7 +6,7 @@ public class BossHealth : MonoBehaviour
     #region Components
 
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 220;
 
     [Header("Blink settings")]
     [SerializeField] private float blinkRate = 0.3f;

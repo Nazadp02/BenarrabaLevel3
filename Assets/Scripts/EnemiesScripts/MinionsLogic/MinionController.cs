@@ -7,8 +7,8 @@ public class MinionController : MonoBehaviour
     #region Components
 
     [Header("Enemy Data")]
-    [SerializeField] private int maxLife = 100;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private int maxLife = 10;
+    [SerializeField] private int damage = 5;
 
     private int currentLife;
     private bool isChasing;
@@ -50,7 +50,7 @@ public class MinionController : MonoBehaviour
         // Check if there are no obstacles between enemy and player
         if (!agent.Raycast(playerTransform.position, out hit))
         {
-            agent.stoppingDistance = 5f;
+            agent.stoppingDistance = 3.5f;
 
             float distance = Vector3.Distance(transform.position, playerTransform.position);
 

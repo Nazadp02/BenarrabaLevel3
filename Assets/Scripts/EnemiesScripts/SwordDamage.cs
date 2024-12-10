@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class TakeDamageMinionTest : MonoBehaviour
+public class SwordDamage : MonoBehaviour
 {
     public int damage = 10;
 
@@ -10,6 +11,10 @@ public class TakeDamageMinionTest : MonoBehaviour
         {
             // Obtener el componente de salud del jefe
             other.GetComponent<MinionController>().DamageEnemy(damage);
+        }
+        else if (other.CompareTag("Skull"))
+        {
+            Destroy(other);
         }
     }
 }
