@@ -9,6 +9,10 @@ TagManager:
   - Gun
   - GunRight
   - GunLeft
+  - Minion
+  - Enemy
+  - WeakPoint
+  - Skull
   layers:
   - Default
   - TransparentFX

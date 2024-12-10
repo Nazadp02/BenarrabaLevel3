@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    [SerializeField] private GameObject gunRight; // Referencia a la pistola en la mano derecha
-    [SerializeField] private Transform shootPointRight;//Referencia al punto de disparo derecho
 
 
     [SerializeField] private GameObject gunLeft;  // Referencia a la pistola en la mano izquierda
@@ -30,14 +28,6 @@ public class PlayerShooting : MonoBehaviour
             } 
         }
 
-        // Detectar si se presiona el botón de disparo del controlador izquierdo
-        if (gunRight.gameObject.CompareTag("GunRight") && OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-        {
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
-            {
-                Shooting(gunRight, shootPointRight);
-            }
-        }
     }
 
     private void Shooting(GameObject gun, Transform shootPoint)

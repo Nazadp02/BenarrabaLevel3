@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -50,7 +49,7 @@ public class MinionController : MonoBehaviour
         // Check if there are no obstacles between enemy and player
         if (!agent.Raycast(playerTransform.position, out hit))
         {
-            agent.stoppingDistance = 3.5f;
+            agent.stoppingDistance = 1f;
 
             float distance = Vector3.Distance(transform.position, playerTransform.position);
 
@@ -98,7 +97,8 @@ public class MinionController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Está haciendo daño al jugador");
-            //To do Player Take Damage
+
+            other.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 
@@ -113,7 +113,10 @@ public class MinionController : MonoBehaviour
     public void DamageEnemy(int quantity)
     {
         currentLife -= quantity;
-        if (currentLife <= 0) Destroy(gameObject);
+        if (currentLife <= 0 || GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().IsDead == true)
+        {
+            Destroy(gameObject);
+        }
     }
 
     #endregion

@@ -22,6 +22,7 @@ public class BossHealth : MonoBehaviour
     //shared components
     public bool IsInvulnerable { get => isInvulnerable; set => isInvulnerable = value; }
     public bool CanTakeDamage { get => canTakeDamage; set => canTakeDamage = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     #endregion
 
@@ -67,6 +68,12 @@ public class BossHealth : MonoBehaviour
         anim.SetTrigger("dead");
         Debug.Log("El boss ha muerto");
     }
+
+    public void OnDeathAnimationEnd()
+    {
+        GameManager.Instance.EndGame(true); // Llama al metodo de victoria
+    }
+    
 
     #endregion
 

@@ -28,5 +28,9 @@ public class BulletDamage : MonoBehaviour
                 Debug.Log("Daño directo al jefe!");
             }
         }
+        else if (other.CompareTag("Minion"))
+        {
+            GameObject.FindGameObjectWithTag("Minion").GetComponent<MinionController>().DamageEnemy(damage);
+        }
     }
 }

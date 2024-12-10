@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordDamage : MonoBehaviour
@@ -14,7 +13,7 @@ public class SwordDamage : MonoBehaviour
         }
         else if (other.CompareTag("Skull"))
         {
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 }
