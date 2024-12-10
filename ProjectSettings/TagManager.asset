@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Props
   - Building
-  - Enemy
-  - WeakPoint
-  - Minion
+  - Gun
+  - GunRight
+  - GunLeft
   layers:
   - Default
   - TransparentFX
