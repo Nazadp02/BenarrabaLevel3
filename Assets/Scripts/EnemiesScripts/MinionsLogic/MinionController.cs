@@ -49,7 +49,7 @@ public class MinionController : MonoBehaviour
         // Check if there are no obstacles between enemy and player
         if (!agent.Raycast(playerTransform.position, out hit))
         {
-            agent.stoppingDistance = 1f;
+            agent.stoppingDistance = 1.5f;
 
             float distance = Vector3.Distance(transform.position, playerTransform.position);
 

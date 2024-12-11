@@ -1,38 +1,55 @@
-using Oculus.Interaction;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
+    [SerializeField] private GameObject gun;  // Referencia a la pistola en la mano izquierda
+    [SerializeField] private Transform shootPoint;//Referencia al punto de disparo izquierdo
+    //[SerializeField] private Transform cameraTransform;
 
-
-    [SerializeField] private GameObject gunLeft;  // Referencia a la pistola en la mano izquierda
-    [SerializeField] private Transform shootPointLeft;//Referencia al punto de disparo izquierdo
-
-
-
-    [SerializeField] private GameObject Bullet;
+    //private ObjectPool objectPool;
     [SerializeField] private float shootForce;
+    [SerializeField] private GameObject bullet;
 
-
+    //private void Awake()
+    //{
+    //    objectPool = GetComponent<ObjectPool>();
+    //}
 
     private void Update()
     {
 
 
         // Detectar si se presiona el botón de disparo del controlador derecho
-        if (gunLeft.gameObject.CompareTag("GunLeft") && OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             {
-                Shooting(gunLeft, shootPointLeft);
+                Shooting();
             } 
         }
 
     }
 
-    private void Shooting(GameObject gun, Transform shootPoint)
+    private void Shooting()
     {
-       Instantiate(Bullet, shootPoint.position, shootPoint.rotation)
-            .GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce);
+        Instantiate(bullet, shootPoint.position, shootPoint.rotation)
+             .GetComponent<Rigidbody>().AddForce(shootPoint.forward * shootForce);
+
+        //GameObject bullet = objectPool.GetGameObject();
+
+        //// Coloca la bala en el punto de disparo
+        //bullet.transform.position = shootPoint.position;
+
+        //// Coloca la bala en el punto de disparo
+        //bullet.transform.position = shootPoint.position;
+
+        //// La dirección del disparo es el "forward" del shootPoint (dirección en la que apunta el cañón)
+        //Vector3 shootDirection = shootPoint.forward;
+
+        //// Asegúrate de que la bala se oriente en la dirección correcta
+        //bullet.transform.rotation = Quaternion.LookRotation(shootDirection);
+
+        //// Aplica la fuerza de disparo en esa dirección
+        //bullet.GetComponent<Rigidbody>().AddForce(shootDirection * shootForce);
     }
 }
