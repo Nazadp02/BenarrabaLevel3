@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
@@ -17,17 +18,11 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-
-
-        // Detectar si se presiona el botón de disparo del controlador derecho
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                Shooting();
-            } 
+            Shooting();
+            SoundManager.PlaySound(SoundType.SHOOT, volume: 0.1f);
         }
-
     }
 
     private void Shooting()

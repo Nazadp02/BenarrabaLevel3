@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -113,8 +114,9 @@ public class MinionController : MonoBehaviour
     public void DamageEnemy(int quantity)
     {
         currentLife -= quantity;
-        if (currentLife <= 0 || GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().IsDead == true)
+        if (currentLife <= 0/* || GameObject.FindGameObjectWithTag("Enemy").GetComponent<BossHealth>().IsDead == true*/)
         {
+            SoundManager.PlaySound(SoundType.ENEMYHIT, volume: 0.2f);
             Destroy(gameObject);
         }
     }

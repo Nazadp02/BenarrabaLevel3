@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,7 @@ public class WeakPoint : MonoBehaviour
 
         if (currentHits >= maxHits)
         {
+            SoundManager.PlaySound(SoundType.WEAKPOINTDESTRUCTION);
             DestroyWeakPoint();
         }
     }

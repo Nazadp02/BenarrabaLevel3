@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using System.Collections;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class BossHealth : MonoBehaviour
     private bool isInvulnerable;
     private bool canTakeDamage = true;
     private bool isDead;
+    private bool areMinionsDeath;
     private Animator anim;
 
     //shared components
@@ -46,6 +48,8 @@ public class BossHealth : MonoBehaviour
         {
             currentHealth -= damage;
 
+            SoundManager.PlaySound(SoundType.ENEMYHIT, volume: 0.2f);
+
             if (currentHealth <= 0)
             {
                 Die();
@@ -65,7 +69,17 @@ public class BossHealth : MonoBehaviour
     {
         isDead = true;
         CanTakeDamage = false;
+
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minion");
+
+        foreach (GameObject minion in minions)
+        {
+            Destroy(minion);
+            areMinionsDeath = true;
+        }
+
         anim.SetTrigger("dead");
+        SoundManager.PlaySound(SoundType.BOSSDEATH);
         Debug.Log("El boss ha muerto");
     }
 

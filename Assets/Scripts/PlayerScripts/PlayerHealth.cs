@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,6 +48,8 @@ public class PlayerHealth : MonoBehaviour
 
             isTakingDamage = true;
             canTakeDamage = false;
+
+            SoundManager.PlaySound(SoundType.PLAYERDAMAGE);
 
             if (currentHealth <= 0)
             {
