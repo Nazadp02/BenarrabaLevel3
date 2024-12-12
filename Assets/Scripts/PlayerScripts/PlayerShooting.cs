@@ -17,15 +17,9 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-
-
-        // Detectar si se presiona el botón de disparo del controlador derecho
-        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                Shooting();
-            } 
+            Shooting();
         }
 
     }
