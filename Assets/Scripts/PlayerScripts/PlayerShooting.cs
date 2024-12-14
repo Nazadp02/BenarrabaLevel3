@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
@@ -20,8 +21,8 @@ public class PlayerShooting : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             Shooting();
+            SoundManager.PlaySound(SoundType.SHOOT, volume: 0.1f);
         }
-
     }
 
     private void Shooting()
