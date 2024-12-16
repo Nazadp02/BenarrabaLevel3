@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6900194603560922571}
   - component: {fileID: 5375005535153394681}
   - component: {fileID: 2904280934370351720}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Proyectile
   m_TagString: Skull
   m_Icon: {fileID: 0}
@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BullSkull
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 6a7c427473b4d03439b149a811ac1644,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -258,6 +263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BullJaw
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a9ce92e3f8bb6224fa1e92b7adec8c65,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
